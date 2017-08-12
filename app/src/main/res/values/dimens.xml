@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_text">36sp</dimen>
+    <dimen name="subtitle_text">20sp</dimen>
+    <dimen name="content_text">14sp</dimen>
+    
+    <dimen name="dimen_30dp">30dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_1dp">1dp</dimen>
+    <dimen name="dimen_0dp">0dp</dimen>
+    <dimen name="progress_bar_size">10dp</dimen>
+</resources>

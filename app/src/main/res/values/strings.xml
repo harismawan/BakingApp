@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Baking App</string>
+    
+    <string name="button_proceed">PROCEED</string>
+    
+    <string name="recipe_ingredient">Recipe Ingredients</string>
+    <string name="ingredient">Ingredients</string>
+    <string name="introduction">Introduction</string>
+    <string name="step">Step</string>
+    <string name="no_connection">No Internet Connection!</string>
+    <string name="fail_connect_api">Failed connect to API!</string>
+</resources>
