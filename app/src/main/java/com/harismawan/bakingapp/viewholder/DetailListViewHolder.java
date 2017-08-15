@@ -9,13 +9,12 @@ import com.harismawan.bakingapp.R;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.viewholders.FlexibleViewHolder;
 
-public class DetailListViewHolder extends FlexibleViewHolder implements View.OnClickListener {
+public class DetailListViewHolder extends FlexibleViewHolder {
 
     @BindView(R.id.detail_name) TextView name;
     @BindView(R.id.detail_desc) TextView desc;
 
     private Context context;
-    private String detail;
 
     public DetailListViewHolder(View itemView, FlexibleAdapter adapter) {
         super(itemView, adapter);
@@ -24,8 +23,6 @@ public class DetailListViewHolder extends FlexibleViewHolder implements View.OnC
     }
 
     public void bind(String entry, int position) {
-        this.detail = entry;
-
         if (position == 0) {
             name.setText(context.getString(R.string.ingredient));
         } else if (position == 1) {
@@ -33,6 +30,6 @@ public class DetailListViewHolder extends FlexibleViewHolder implements View.OnC
         } else {
             name.setText(context.getString(R.string.step) + " " + (position - 1));
         }
-        desc.setText(detail);
+        desc.setText(entry);
     }
 }

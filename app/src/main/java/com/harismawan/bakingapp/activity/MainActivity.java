@@ -1,18 +1,19 @@
 package com.harismawan.bakingapp.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.harismawan.bakingapp.R;
-import com.harismawan.bakingapp.adapter.RecipeRecyclerAdapter;
 import com.harismawan.bakingapp.config.Constants;
 import com.harismawan.bakingapp.database.DatabaseHelper;
 import com.harismawan.bakingapp.database.Query;
 import com.harismawan.bakingapp.model.Recipe;
+import eu.davidea.flexibleadapter.FlexibleAdapter;
 
 import java.util.ArrayList;
 
@@ -51,8 +52,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initRecyclerView(ArrayList<Recipe> recipes) {
-        RecipeRecyclerAdapter adapter = new RecipeRecyclerAdapter(recipes);
+    private void initRecyclerView(final ArrayList<Recipe> recipes) {
+        FlexibleAdapter<Recipe> adapter = new FlexibleAdapter<>(recipes);
+        adapter.addListener(new FlexibleAdapter.OnItemClickListener() {
+            @Override
+            public boolean onItemClick(int position) {
+                Intent change = new Intent(MainActivity.this, ListDetailActivity.class);
+                change.putExtra(Constants.EXTRA_KEY_ID, recipes.get(position).id);
+                startActivity(change);
+                return false;
+            }
+        });
         recyclerRecipe.setAdapter(adapter);
     }
 

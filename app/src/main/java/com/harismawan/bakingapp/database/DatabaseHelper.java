@@ -1,19 +1,13 @@
 package com.harismawan.bakingapp.database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.harismawan.bakingapp.model.Ingredient;
-import com.harismawan.bakingapp.model.Recipe;
-import com.harismawan.bakingapp.model.Step;
-
-import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "baking_app";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     static final String TABLE_RECIPE = "recipe";
     static final String TABLE_INGREDIENT = "ingredient";

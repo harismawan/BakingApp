@@ -46,6 +46,4 @@ public class ListDetail extends AbstractFlexibleItem<DetailListViewHolder> {
 
         holder.bind(text, position);
     }
-
-
 }

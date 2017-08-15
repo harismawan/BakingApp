@@ -53,7 +53,6 @@ public class Query {
     }
 
     private void deleteCache(SQLiteDatabase db) {
-
         db.delete(DatabaseHelper.TABLE_RECIPE, null, null);
         db.delete(DatabaseHelper.TABLE_INGREDIENT, null, null);
         db.delete(DatabaseHelper.TABLE_STEP, null, null);
@@ -82,12 +81,12 @@ public class Query {
     public ArrayList<Ingredient> getIngredientList(int recipeId) {
         ArrayList<Ingredient> list = new ArrayList<>();
         Cursor mCursor = dbHelper.getReadableDatabase().rawQuery("SELECT * FROM " + DatabaseHelper.TABLE_INGREDIENT
-                + " WHERE " + DatabaseHelper.COLUMN_RECIPE_ID + " = ", new String[]{Integer.toString(recipeId)});
+                + " WHERE " + DatabaseHelper.COLUMN_RECIPE_ID + " = ?", new String[]{Integer.toString(recipeId)});
 
         if (mCursor.moveToFirst()) {
             do {
                 Ingredient entry = new Ingredient();
-                entry.quantity = mCursor.getInt(mCursor.getColumnIndex(DatabaseHelper.COLUMN_QUANTITY));
+                entry.quantity = mCursor.getFloat(mCursor.getColumnIndex(DatabaseHelper.COLUMN_QUANTITY));
                 entry.ingredient = mCursor.getString(mCursor.getColumnIndex(DatabaseHelper.COLUMN_INGREDIENT));
                 entry.measure = mCursor.getString(mCursor.getColumnIndex(DatabaseHelper.COLUMN_MEASURE));
                 list.add(entry);

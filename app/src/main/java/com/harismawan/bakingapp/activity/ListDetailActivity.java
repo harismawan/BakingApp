@@ -60,7 +60,7 @@ public class ListDetailActivity extends AppCompatActivity {
 
         determinePaneLayout();
 
-        initRecyclerView(getTextList());
+        initRecyclerView(getFlexibleList());
 
         if (savedInstanceState != null) {
             int position = savedInstanceState.getInt(Constants.EXTRA_KEY_CURRENT_POSITION);
@@ -74,7 +74,7 @@ public class ListDetailActivity extends AppCompatActivity {
         }
     }
 
-    private ArrayList<IFlexible> getTextList() {
+    private ArrayList<IFlexible> getFlexibleList() {
         ArrayList<IFlexible> flexible = new ArrayList<>();
         flexible.add(new ListDetail(this, getString(R.string.recipe_ingredient)));
 
