@@ -11,13 +11,10 @@
             android:orientation="vertical"
             android:padding="@dimen/dimen_20dp">
 
-        <VideoView
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
                 android:id="@+id/step_video"
-                android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                android:adjustViewBounds="true"
-                android:layout_marginBottom="@dimen/dimen_10dp"
-                android:keepScreenOn="true"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/video_height"
                 android:visibility="gone"/>
     
         <ImageView
@@ -33,13 +30,14 @@
                 android:id="@+id/step_short"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/subtitle_text"/>
     
         <TextView
                 android:id="@+id/step_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/subtitle_text"/>
+                android:textSize="@dimen/content_text"/>
 
     </LinearLayout>
 
