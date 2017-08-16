@@ -7,11 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "baking_app";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
 
     static final String TABLE_RECIPE = "recipe";
     static final String TABLE_INGREDIENT = "ingredient";
     static final String TABLE_STEP = "step";
+    static final String TABLE_WIDGET = "widget";
 
     static final String COLUMN_ID = "id";
     static final String COLUMN_NAME = "name";
@@ -51,6 +52,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_VIDEO_URL + " VARCHAR NOT NULL, "
                 + COLUMN_THUMBNAIL_URL + " VARCHAR NOT NULL, "
                 + COLUMN_RECIPE_ID + " INTEGER NOT NULL)");
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_WIDGET + " ("
+                + COLUMN_ID + " INTEGER NOT NULL PRIMARY KEY, "
+                + COLUMN_QUANTITY + " FLOAT NOT NULL, "
+                + COLUMN_MEASURE + " VARCHAR NOT NULL, "
+                + COLUMN_INGREDIENT + " VARCHAR NOT NULL)");
     }
 
     @Override
@@ -58,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STEP);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WIDGET);
         onCreate(db);
     }
 }

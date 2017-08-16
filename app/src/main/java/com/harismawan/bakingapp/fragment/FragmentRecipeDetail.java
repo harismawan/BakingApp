@@ -1,12 +1,13 @@
 package com.harismawan.bakingapp.fragment;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.harismawan.bakingapp.R;
@@ -14,6 +15,7 @@ import com.harismawan.bakingapp.config.Constants;
 import com.harismawan.bakingapp.database.DatabaseHelper;
 import com.harismawan.bakingapp.database.Query;
 import com.harismawan.bakingapp.utils.Utils;
+import com.harismawan.bakingapp.widget.IngredientAppWidget;
 
 public class FragmentRecipeDetail extends Fragment {
 
@@ -30,6 +32,9 @@ public class FragmentRecipeDetail extends Fragment {
         Bundle receive = getArguments();
         id = receive.getInt(Constants.EXTRA_KEY_ID);
         type = receive.getInt(Constants.EXTRA_KEY_TYPE);
+
+        if (type == Constants.TYPE_INGREDIENT)
+            setHasOptionsMenu(true);
     }
 
     public static FragmentRecipeDetail newInstance(Bundle send) {
@@ -67,5 +72,33 @@ public class FragmentRecipeDetail extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(Constants.EXTRA_KEY_CURRENT_POSITION, mLinearLayoutManager.findFirstVisibleItemPosition());
+    }
+
+    private void updateWidget() {
+        query.setWidgetData(query.getIngredientList(id));
+        AppWidgetManager manager = AppWidgetManager.getInstance(getContext());
+        int[] appWidgetIds = manager.getAppWidgetIds(new ComponentName(getContext(), IngredientAppWidget.class));
+        manager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list);
+
+        Toast.makeText(getContext(), getString(R.string.saved), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (type == Constants.TYPE_INGREDIENT) {
+            inflater.inflate(R.menu.menu_ingredient, menu);
+        }
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.save_widget:
+                updateWidget();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

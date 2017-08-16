@@ -117,4 +117,34 @@ public class Query {
         mCursor.close();
         return list;
     }
+
+    public void setWidgetData(ArrayList<Ingredient> ingredients) {
+        for (int i = 0; i < ingredients.size(); i++) {
+            ContentValues iValues = new ContentValues();
+            iValues.put(DatabaseHelper.COLUMN_ID, i);
+            iValues.put(DatabaseHelper.COLUMN_QUANTITY, ingredients.get(i).quantity);
+            iValues.put(DatabaseHelper.COLUMN_MEASURE, ingredients.get(i).measure);
+            iValues.put(DatabaseHelper.COLUMN_INGREDIENT, ingredients.get(i).ingredient);
+            dbHelper.getWritableDatabase().replace(DatabaseHelper.TABLE_WIDGET, null, iValues);
+        }
+    }
+
+    public ArrayList<Ingredient> getWidgetData() {
+        ArrayList<Ingredient> list = new ArrayList<>();
+        Cursor mCursor = dbHelper.getReadableDatabase().rawQuery("SELECT * FROM " +
+                DatabaseHelper.TABLE_WIDGET, null);
+
+        if (mCursor.moveToFirst()) {
+            do {
+                Ingredient entry = new Ingredient();
+                entry.quantity = mCursor.getFloat(mCursor.getColumnIndex(DatabaseHelper.COLUMN_QUANTITY));
+                entry.ingredient = mCursor.getString(mCursor.getColumnIndex(DatabaseHelper.COLUMN_INGREDIENT));
+                entry.measure = mCursor.getString(mCursor.getColumnIndex(DatabaseHelper.COLUMN_MEASURE));
+                list.add(entry);
+            } while (mCursor.moveToNext());
+        }
+
+        mCursor.close();
+        return list;
+    }
 }

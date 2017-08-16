@@ -9,4 +9,8 @@
     <string name="step">Step</string>
     <string name="no_connection">No Internet Connection!</string>
     <string name="fail_connect_api">Failed connect to API!</string>
+    <string name="add_widget">Add widget</string>
+    <string name="widget_title">List Ingredient</string>
+    <string name="save_to_widget">Save to Widget</string>
+    <string name="saved">Saved to Widget!</string>
 </resources>

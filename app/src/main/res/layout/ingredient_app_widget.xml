@@ -1,0 +1,25 @@
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/widget_margin"
+        android:background="@color/colorWhite">
+    
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/subtitle_text"
+            android:padding="@dimen/dimen_10dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="@string/widget_title"/>
+    
+    <ListView
+            android:id="@+id/widget_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"/>
+
+</RelativeLayout>
