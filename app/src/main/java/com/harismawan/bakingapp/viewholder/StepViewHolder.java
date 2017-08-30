@@ -7,9 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
@@ -20,6 +18,7 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.harismawan.bakingapp.R;
+import com.harismawan.bakingapp.config.Constants;
 import com.squareup.picasso.Picasso;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.viewholders.FlexibleViewHolder;
@@ -46,6 +45,7 @@ public class StepViewHolder extends FlexibleViewHolder {
         }
 
         if (!image.isEmpty()) {
+            this.image.setVisibility(View.VISIBLE);
             Picasso.with(context).load(image).placeholder(R.mipmap.ic_placeholder)
                     .error(R.mipmap.ic_placeholder).into(this.image);
         }
@@ -58,8 +58,7 @@ public class StepViewHolder extends FlexibleViewHolder {
         video.setVisibility(View.VISIBLE);
 
         TrackSelector trackSelector = new DefaultTrackSelector();
-        LoadControl loadControl = new DefaultLoadControl();
-        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(context, trackSelector, loadControl);
+        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(context, trackSelector);
         video.setPlayer(player);
 
         String userAgent = Util.getUserAgent(context, context.getString(R.string.app_name));
@@ -67,5 +66,6 @@ public class StepViewHolder extends FlexibleViewHolder {
                 (context, userAgent), new DefaultExtractorsFactory(), null, null);
         player.prepare(mediaSource);
         player.setPlayWhenReady(false);
+        Constants.activePlayer.add(player);
     }
 }

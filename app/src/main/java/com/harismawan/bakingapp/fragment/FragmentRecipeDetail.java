@@ -69,6 +69,18 @@ public class FragmentRecipeDetail extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        Utils.pausePlayer();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Utils.releasePlayer();
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(Constants.EXTRA_KEY_CURRENT_POSITION, mLinearLayoutManager.findFirstVisibleItemPosition());

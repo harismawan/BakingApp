@@ -62,6 +62,18 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        Utils.pausePlayer();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Utils.releasePlayer();
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(Constants.EXTRA_KEY_CURRENT_POSITION, mLinearLayoutManager.findFirstVisibleItemPosition());

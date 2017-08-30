@@ -13,10 +13,7 @@ import com.harismawan.bakingapp.R;
 public class IngredientAppWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
-
-//        CharSequence widgetText = context.getString(R.string.appwidget_text);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ingredient_app_widget);
-//        views.setTextViewText(R.id.appwidget_text, widgetText);
         Intent svcIntent=new Intent(context, WidgetService.class);
         views.setRemoteAdapter(R.id.widget_list, svcIntent);
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -24,7 +21,6 @@ public class IngredientAppWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }

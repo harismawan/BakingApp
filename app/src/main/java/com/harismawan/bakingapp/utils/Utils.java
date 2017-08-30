@@ -4,13 +4,18 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.widget.RecyclerView;
+import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.harismawan.bakingapp.config.Constants;
 import com.harismawan.bakingapp.database.Query;
 import com.harismawan.bakingapp.model.Ingredient;
 import com.harismawan.bakingapp.model.Step;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 
-public class Utils {
+public final class Utils {
+
+    private Utils() {
+
+    }
 
     public static APIHelper getAPIHelper() {
         return RetrofitClient.getClient(Constants.BASE_URL).create(APIHelper.class);
@@ -31,5 +36,18 @@ public class Utils {
             recyclerList.setAdapter(adapter);
         }
         recyclerList.setVerticalScrollBarEnabled(false);
+    }
+
+    public static void pausePlayer() {
+        for (SimpleExoPlayer p : Constants.activePlayer) {
+            p.setPlayWhenReady(false);
+        }
+    }
+
+    public static void releasePlayer() {
+        for (SimpleExoPlayer p : Constants.activePlayer) {
+            p.release();
+        }
+        Constants.activePlayer.clear();
     }
 }
