@@ -1,6 +1,7 @@
 package com.harismawan.bakingapp.config;
 
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.harismawan.bakingapp.model.Ingredient;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,8 @@ public final class Constants {
     private Constants() {
 
     }
+
+    public static ArrayList<Ingredient> widget = new ArrayList<>();
 
     public static ArrayList<SimpleExoPlayer> activePlayer = new ArrayList<>();
 

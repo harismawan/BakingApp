@@ -87,7 +87,12 @@ public class FragmentRecipeDetail extends Fragment {
     }
 
     private void updateWidget() {
-        query.setWidgetData(query.getIngredientList(id));
+//        query.setWidgetData(query.getIngredientList(id));
+
+        Constants.widget.clear();
+        // change with your ingredient list from network
+        Constants.widget = query.getIngredientList(id);
+
         AppWidgetManager manager = AppWidgetManager.getInstance(getContext());
         int[] appWidgetIds = manager.getAppWidgetIds(new ComponentName(getContext(), IngredientAppWidget.class));
         manager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list);

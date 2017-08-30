@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 import com.harismawan.bakingapp.R;
+import com.harismawan.bakingapp.config.Constants;
 import com.harismawan.bakingapp.database.DatabaseHelper;
 import com.harismawan.bakingapp.database.Query;
 import com.harismawan.bakingapp.model.Ingredient;
@@ -30,7 +31,8 @@ public class ListRemoteViewFactory implements RemoteViewsService.RemoteViewsFact
 
     @Override
     public void onDataSetChanged() {
-        ingredients = query.getWidgetData();
+//        ingredients = query.getWidgetData();
+        ingredients = Constants.widget;
     }
 
     @Override
