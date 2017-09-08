@@ -2,6 +2,7 @@ package com.harismawan.bakingapp.viewholder;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,12 +40,12 @@ public class StepViewHolder extends FlexibleViewHolder {
     }
 
     public void bind(String video, String image, String shortDesc, String desc) {
-        if (!video.isEmpty()) {
+        if (!TextUtils.isEmpty(video)) {
             initPlayer(video);
 
         }
 
-        if (!image.isEmpty()) {
+        if (!TextUtils.isEmpty(image)) {
             this.image.setVisibility(View.VISIBLE);
             Picasso.with(context).load(image).placeholder(R.mipmap.ic_placeholder)
                     .error(R.mipmap.ic_placeholder).into(this.image);

@@ -1,6 +1,7 @@
 package com.harismawan.bakingapp.viewholder;
 
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class RecipeViewHolder extends FlexibleViewHolder implements View.OnClick
     }
 
     public void bind(String imageUrl, String name, int servings) {
-        if (!imageUrl.isEmpty()) {
+        if (!TextUtils.isEmpty(imageUrl)) {
             Picasso.with(image.getContext()).load(imageUrl).placeholder(R.mipmap.ic_placeholder)
                     .error(R.mipmap.ic_placeholder).into(image);
         }
